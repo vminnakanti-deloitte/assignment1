@@ -1,8 +1,18 @@
-CREATE TABLE nummer (ID INTEGER PRIMARY KEY, num, text, text2);
-WITH RECURSIVE
-  for(i) AS (VALUES(1) UNION ALL SELECT i+1 FROM for WHERE i < 1000000)
-INSERT INTO nummer SELECT i, i+1, "text" || i, "otherText" || i FROM for;
+create table fixtures(MatchNumber SERIAL, HomeTeam VARCHAR(50), AwayTeam VARCHAR(50), venue VARCHAR(50), TeamWon Varchar(50),TeamLost VARCHAR(50))
+create table details(sl_no SERIAL, TeamName varchar(50), captain varchar(50),owner varchar(50),home_ground varchar(50))
+create table points(teamname varchar(50), noofwins varchar(10), nooflosses varchar(10),points varchar(10))
 
-insert into points(teamname) from fixtures where count(hometeam) having count(teamwon)>=4
+select * from details
 
-insert into points(teamname) from fixtures where count(hometeam) having count(teamwon)>=4
+select teamname from details
+
+COPY fixtures(matchnumber,hometeam,awayteam,venue,teamwon,teamlost) FROM 'C:\Users\vminnakanti\Downloads\Fixtures (2).csv' DELIMITER ',' CSV HEADER;
+
+select hometeam from fixtures where teamwon='RCB'
+
+select hometeam, teamlost from fixtures where venue='Kolkata'
+SELECT TEAMLOST, COUNT(*)
+FROM FIXTURES  where TEAMLOST='PK'
+GROUP BY TEAMLOST
+ORDER BY COUNT(*) DESC
+
