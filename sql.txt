@@ -1,0 +1,8 @@
+CREATE TABLE nummer (ID INTEGER PRIMARY KEY, num, text, text2);
+WITH RECURSIVE
+  for(i) AS (VALUES(1) UNION ALL SELECT i+1 FROM for WHERE i < 1000000)
+INSERT INTO nummer SELECT i, i+1, "text" || i, "otherText" || i FROM for;
+
+insert into points(teamname) from fixtures where count(hometeam) having count(teamwon)>=4
+
+insert into points(teamname) from fixtures where count(hometeam) having count(teamwon)>=4
